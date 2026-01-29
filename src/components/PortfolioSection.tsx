@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import portfolio1 from '@/assets/portfolio-1.jpg';
 import portfolio2 from '@/assets/portfolio-2.jpg';
 import portfolio3 from '@/assets/portfolio-3.jpg';
@@ -8,37 +9,37 @@ import portfolio6 from '@/assets/portfolio-6.jpg';
 
 const portfolioItems = [
   {
-    id: 1,
+    id: '1',
     image: portfolio1,
     title: 'Brand Identity',
     category: 'Branding',
   },
   {
-    id: 2,
+    id: '2',
     image: portfolio2,
     title: 'Digital Art',
     category: 'Digital',
   },
   {
-    id: 3,
+    id: '3',
     image: portfolio3,
     title: 'Logo Design',
     category: 'Branding',
   },
   {
-    id: 4,
+    id: '4',
     image: portfolio4,
     title: 'Social Media',
     category: 'Digital',
   },
   {
-    id: 5,
+    id: '5',
     image: portfolio5,
     title: 'Packaging',
     category: 'Print',
   },
   {
-    id: 6,
+    id: '6',
     image: portfolio6,
     title: 'Poster Design',
     category: 'Print',
@@ -48,6 +49,7 @@ const portfolioItems = [
 const PortfolioSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -65,6 +67,10 @@ const PortfolioSection = () => {
 
     return () => observer.disconnect();
   }, []);
+
+  const handleProjectClick = (projectId: string) => {
+    navigate(`/project/${projectId}`);
+  };
 
   return (
     <section id="portfolio" ref={sectionRef} className="py-20 md:py-32 bg-background">
@@ -85,7 +91,8 @@ const PortfolioSection = () => {
           {portfolioItems.map((item, index) => (
             <div
               key={item.id}
-              className={`portfolio-card group rounded-2xl overflow-hidden aspect-square ${
+              onClick={() => handleProjectClick(item.id)}
+              className={`portfolio-card group rounded-2xl overflow-hidden aspect-square cursor-pointer ${
                 isVisible ? 'animate-scale-in opacity-0' : 'opacity-0'
               }`}
               style={{ animationFillMode: 'forwards', animationDelay: `${index * 0.1}s` }}
@@ -98,15 +105,12 @@ const PortfolioSection = () => {
               <div className="portfolio-card-overlay flex flex-col justify-end p-6">
                 <span className="text-primary text-sm font-medium">{item.category}</span>
                 <h3 className="text-foreground text-xl font-bold mt-1">{item.title}</h3>
-                <a
-                  href="#"
-                  className="mt-4 inline-flex items-center gap-2 text-foreground/80 hover:text-primary transition-colors"
-                >
+                <span className="mt-4 inline-flex items-center gap-2 text-foreground/80 group-hover:text-primary transition-colors">
                   View Project
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
-                </a>
+                </span>
               </div>
             </div>
           ))}
@@ -114,15 +118,15 @@ const PortfolioSection = () => {
 
         {/* View All Button */}
         <div className="text-center mt-12">
-          <a
-            href="#"
+          <button
+            onClick={() => navigate('/project/1')}
             className="inline-flex items-center gap-2 px-8 py-4 border-2 border-primary text-primary font-semibold rounded-full hover:bg-primary hover:text-primary-foreground transition-all duration-300"
           >
             View All Projects
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
-          </a>
+          </button>
         </div>
       </div>
     </section>
