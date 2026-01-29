@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import portfolio1 from '@/assets/portfolio-1.jpg';
 import portfolio2 from '@/assets/portfolio-2.jpg';
 import portfolio3 from '@/assets/portfolio-3.jpg';
 
 const projects = [
   {
-    id: 1,
+    id: '1',
     image: portfolio1,
     title: 'Premium Brand Package',
     titleAmharic: 'ፕሪሚየም ብራንድ ፓኬጅ',
@@ -13,7 +14,7 @@ const projects = [
     category: 'Branding',
   },
   {
-    id: 2,
+    id: '2',
     image: portfolio2,
     title: 'Digital Campaign',
     titleAmharic: 'ዲጂታል ካምፔይን',
@@ -21,7 +22,7 @@ const projects = [
     category: 'Digital',
   },
   {
-    id: 3,
+    id: '3',
     image: portfolio3,
     title: 'Logo Collection',
     titleAmharic: 'ሎጎ ስብስብ',
@@ -33,6 +34,7 @@ const projects = [
 const ProjectsSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -50,6 +52,10 @@ const ProjectsSection = () => {
 
     return () => observer.disconnect();
   }, []);
+
+  const handleProjectClick = (projectId: string) => {
+    navigate(`/project/${projectId}`);
+  };
 
   return (
     <section id="projects" ref={sectionRef} className="py-20 md:py-32 bg-secondary/30">
@@ -79,7 +85,10 @@ const ProjectsSection = () => {
             >
               {/* Image */}
               <div className="w-full lg:w-1/2">
-                <div className="relative rounded-2xl overflow-hidden aspect-video group">
+                <div
+                  onClick={() => handleProjectClick(project.id)}
+                  className="relative rounded-2xl overflow-hidden aspect-video group cursor-pointer"
+                >
                   <img
                     src={project.image}
                     alt={project.title}
@@ -99,15 +108,15 @@ const ProjectsSection = () => {
                 </h3>
                 <p className="text-primary/80">{project.titleAmharic}</p>
                 <p className="text-muted-foreground text-lg">{project.description}</p>
-                <a
-                  href="#"
+                <button
+                  onClick={() => handleProjectClick(project.id)}
                   className="inline-flex items-center gap-2 text-foreground hover:text-primary transition-colors pt-2"
                 >
                   View Project Details
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
-                </a>
+                </button>
               </div>
             </div>
           ))}
