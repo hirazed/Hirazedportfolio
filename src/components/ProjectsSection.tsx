@@ -58,65 +58,56 @@ const ProjectsSection = () => {
   };
 
   return (
-    <section id="projects" ref={sectionRef} className="py-20 md:py-32 bg-secondary/30">
+    <section id="projects" ref={sectionRef} className="py-16 md:py-24 bg-secondary/30">
       <div className="container mx-auto px-6 lg:px-12">
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-primary font-semibold tracking-wider uppercase">Projects</span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mt-3">
+        <div className="text-center max-w-2xl mx-auto mb-12">
+          <span className="text-primary font-semibold tracking-wider uppercase text-sm">Projects</span>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mt-2">
             Featured Projects
           </h2>
-          <p className="text-muted-foreground mt-4 text-lg">
+          <p className="text-muted-foreground mt-3 text-base">
             Hand-picked projects that showcase creative excellence
           </p>
         </div>
 
-        {/* Projects List */}
-        <div className="space-y-12">
+        {/* Projects Grid - 3 per row */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project, index) => (
             <div
               key={project.id}
-              className={`flex flex-col ${
-                index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
-              } gap-8 lg:gap-16 items-center ${
+              onClick={() => handleProjectClick(project.id)}
+              className={`group cursor-pointer rounded-xl overflow-hidden bg-card border border-border hover:border-primary/50 transition-all duration-300 ${
                 isVisible ? 'animate-fade-in-up opacity-0' : 'opacity-0'
               }`}
-              style={{ animationFillMode: 'forwards', animationDelay: `${index * 0.2}s` }}
+              style={{ animationFillMode: 'forwards', animationDelay: `${index * 0.1}s` }}
             >
               {/* Image */}
-              <div className="w-full lg:w-1/2">
-                <div
-                  onClick={() => handleProjectClick(project.id)}
-                  className="relative rounded-2xl overflow-hidden aspect-video group cursor-pointer"
-                >
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </div>
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <span className="absolute top-3 left-3 px-2 py-1 bg-primary/90 text-primary-foreground text-xs font-medium rounded-full">
+                  {project.category}
+                </span>
               </div>
 
               {/* Content */}
-              <div className="w-full lg:w-1/2 space-y-4">
-                <span className="text-primary text-sm font-medium uppercase tracking-wider">
-                  {project.category}
-                </span>
-                <h3 className="text-2xl md:text-3xl font-bold text-foreground">
+              <div className="p-4 space-y-2">
+                <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors">
                   {project.title}
                 </h3>
-                <p className="text-primary/80">{project.titleAmharic}</p>
-                <p className="text-muted-foreground text-lg">{project.description}</p>
-                <button
-                  onClick={() => handleProjectClick(project.id)}
-                  className="inline-flex items-center gap-2 text-foreground hover:text-primary transition-colors pt-2"
-                >
-                  View Project Details
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <p className="text-primary/80 text-sm">{project.titleAmharic}</p>
+                <p className="text-muted-foreground text-sm line-clamp-2">{project.description}</p>
+                <div className="flex items-center gap-1 text-foreground/70 group-hover:text-primary transition-colors pt-1 text-sm">
+                  View Details
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
-                </button>
+                </div>
               </div>
             </div>
           ))}
