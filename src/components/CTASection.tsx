@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const CTASection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -20,10 +22,6 @@ const CTASection = () => {
 
     return () => observer.disconnect();
   }, []);
-
-  const scrollToContact = () => {
-    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-  };
 
   return (
     <section ref={sectionRef} className="py-16 md:py-24 bg-background relative overflow-hidden">
@@ -56,7 +54,7 @@ const CTASection = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
             <button
-              onClick={scrollToContact}
+              onClick={() => navigate('/contact')}
               className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary text-primary-foreground font-semibold rounded-full hover:bg-primary/90 transition-all duration-300 hover:scale-105"
             >
               Start a Project
@@ -65,7 +63,7 @@ const CTASection = () => {
               </svg>
             </button>
             <a
-              href="mailto:contact@nigusgraphics.com"
+              href="mailto:hiruy@example.com"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-primary text-primary font-semibold rounded-full hover:bg-primary hover:text-primary-foreground transition-all duration-300"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

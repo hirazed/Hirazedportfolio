@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import heroSlide1 from '@/assets/hero-slide-1.jpg';
 import heroSlide2 from '@/assets/hero-slide-2.jpg';
 import heroSlide3 from '@/assets/hero-slide-3.jpg';
@@ -8,27 +9,31 @@ const heroSlides = [
     id: 1,
     image: heroSlide1,
     titleAmharic: 'የግራፊክ ዲዛይን አገልግሎት',
-    titleEnglish: 'Professional Graphic Design',
-    subtitle: 'Creating stunning visuals that captivate and inspire',
+    titleEnglish: 'Hiruy Zerihun',
+    role: 'Graphic Designer & Social Media Designer',
+    subtitle: 'Designing Visual Stories That Convert and Connect.',
   },
   {
     id: 2,
     image: heroSlide2,
     titleAmharic: 'ብራንድ ማንነት ዲዛይን',
     titleEnglish: 'Brand Identity Design',
-    subtitle: 'Building memorable brands that stand out',
+    role: 'Creating Memorable Brands',
+    subtitle: 'Building brands that stand out in the digital landscape.',
   },
   {
     id: 3,
     image: heroSlide3,
     titleAmharic: 'ዲጂታል አርት ፈጠራ',
     titleEnglish: 'Digital Art Creation',
-    subtitle: 'Transforming ideas into visual masterpieces',
+    role: 'Transforming Ideas',
+    subtitle: 'From concept to stunning visual masterpieces.',
   },
 ];
 
 const HeroSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -66,23 +71,28 @@ const HeroSection = () => {
             key={currentSlide}
             className="space-y-6"
           >
-            {/* Amharic Title */}
+            {/* Name/Title */}
             <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-foreground animate-fade-in-up opacity-0" style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}>
-              {heroSlides[currentSlide].titleAmharic}
+              {heroSlides[currentSlide].titleEnglish}
             </h1>
 
-            {/* English Subtitle */}
+            {/* Role */}
             <h2 className="text-xl md:text-2xl lg:text-3xl font-medium text-primary animate-fade-in-up opacity-0" style={{ animationDelay: '0.4s', animationFillMode: 'forwards' }}>
-              {heroSlides[currentSlide].titleEnglish}
+              {heroSlides[currentSlide].role}
             </h2>
+
+            {/* Amharic */}
+            <p className="text-lg text-primary/70 animate-fade-in-up opacity-0" style={{ animationDelay: '0.5s', animationFillMode: 'forwards' }}>
+              {heroSlides[currentSlide].titleAmharic}
+            </p>
 
             {/* Description */}
             <p className="text-lg text-muted-foreground max-w-lg animate-fade-in-up opacity-0" style={{ animationDelay: '0.6s', animationFillMode: 'forwards' }}>
               {heroSlides[currentSlide].subtitle}
             </p>
 
-            {/* CTA Button */}
-            <div className="pt-4 animate-fade-in-up opacity-0" style={{ animationDelay: '0.8s', animationFillMode: 'forwards' }}>
+            {/* CTA Buttons */}
+            <div className="flex flex-wrap gap-4 pt-4 animate-fade-in-up opacity-0" style={{ animationDelay: '0.8s', animationFillMode: 'forwards' }}>
               <a
                 href="#portfolio"
                 className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground font-semibold rounded-full hover:bg-primary/90 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/30"
@@ -92,6 +102,12 @@ const HeroSection = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </a>
+              <button
+                onClick={() => navigate('/contact')}
+                className="inline-flex items-center gap-2 px-8 py-4 border-2 border-primary text-primary font-semibold rounded-full hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+              >
+                Contact Me
+              </button>
             </div>
           </div>
         </div>
