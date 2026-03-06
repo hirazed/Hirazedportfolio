@@ -49,7 +49,7 @@ const ContactSection = () => {
                 </div>
                 <div>
                   <p className="text-sm text-muted-foreground">Email</p>
-                  <p className="text-foreground font-medium">contact@nigusgraphics.com</p>
+                  <p className="text-foreground font-medium">hirazed97@gmail.com</p>
                 </div>
               </div>
 
@@ -79,21 +79,8 @@ const ContactSection = () => {
               </div>
             </div>
 
-            {/* Social Links */}
-            <div className="flex gap-4 pt-4">
-              {['facebook', 'instagram', 'twitter', 'linkedin'].map((social) => (
-                <a
-                  key={social}
-                  href="#"
-                  className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:border-primary hover:text-primary hover:bg-primary/10 transition-all duration-300"
-                >
-                  <span className="sr-only">{social}</span>
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2C6.477 2 2 6.477 2 12c0 5.013 3.693 9.153 8.505 9.876V14.65H8.031v-2.629h2.474v-1.749c0-2.896 1.411-4.167 3.818-4.167 1.153 0 1.762.085 2.051.124v2.294h-1.642c-1.022 0-1.379.969-1.379 2.061v1.437h2.995l-.406 2.629h-2.588v7.247C18.235 21.236 22 17.062 22 12c0-5.523-4.477-10-10-10z" />
-                  </svg>
-                </a>
-              ))}
-            </div>
+            {/* REMOVED: Social Links Section */}
+            
           </div>
 
           {/* Contact Form */}
@@ -125,7 +112,7 @@ const ContactSection = () => {
                 <label className="block text-sm font-medium text-foreground mb-2">Subject</label>
                 <input
                   type="text"
-                  className="w-full px-4 py-3 rounded-lg bg-background border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-foreground placeholder:text-muted-foreground"
+                    className="w-full px-4 py-3 rounded-lg bg-background border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-foreground placeholder:text-muted-foreground"
                   placeholder="Project inquiry"
                 />
               </div>

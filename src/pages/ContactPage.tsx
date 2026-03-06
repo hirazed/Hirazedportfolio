@@ -1,7 +1,13 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, Mail, Phone, MapPin, Send, Linkedin, Instagram, Dribbble, Globe, CheckCircle } from 'lucide-react';
+import { ArrowLeft, Mail, Phone, MapPin, Send, Palette, MessageSquare, CheckCircle } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+
+// Import your social media icons
+import behanceIcon from '@/assets/logos/logo8.png'; // Behance
+import linkedinIcon from '@/assets/logos/logo9.png'; // LinkedIn
+import telegramIcon from '@/assets/logos/logo10.png'; // Telegram
+import emailIcon from '@/assets/logos/logo11.png'; // Email
 
 const ContactPage = () => {
   const navigate = useNavigate();
@@ -81,7 +87,7 @@ const ContactPage = () => {
               {/* Contact Details */}
               <div className="space-y-4">
                 {[
-                  { icon: <Mail className="w-5 h-5" />, label: 'Email', value: 'hiruy@example.com', href: 'mailto:hiruy@example.com' },
+                  { icon: <Mail className="w-5 h-5" />, label: 'Email', value: 'hirazed97@gmail.com', href: 'mailto:hirazed97@gmail.com' },
                   { icon: <Phone className="w-5 h-5" />, label: 'Phone', value: '+251 91 234 5678', href: 'tel:+251912345678' },
                   { icon: <MapPin className="w-5 h-5" />, label: 'Location', value: 'Addis Ababa, Ethiopia', href: '#' },
                 ].map((item) => (
@@ -101,23 +107,30 @@ const ContactPage = () => {
                 ))}
               </div>
 
-              {/* Social Links */}
+              {/* Social Links - UPDATED with your icons */}
               <div>
                 <h3 className="text-lg font-semibold text-foreground mb-4">Follow Me</h3>
                 <div className="flex gap-3">
                   {[
-                    { icon: <Linkedin className="w-5 h-5" />, href: '#', label: 'LinkedIn' },
-                    { icon: <Instagram className="w-5 h-5" />, href: '#', label: 'Instagram' },
-                    { icon: <Dribbble className="w-5 h-5" />, href: '#', label: 'Dribbble' },
-                    { icon: <Globe className="w-5 h-5" />, href: '#', label: 'Portfolio' },
+                    { icon: behanceIcon, href: 'https://www.behance.net/hiruyzerihun', label: 'Behance' },
+                    { icon: linkedinIcon, href: 'https://www.linkedin.com/in/hiruy-zerihun250997/', label: 'LinkedIn' },
+                    { icon: telegramIcon, href: 'https://t.me/Hirazed', label: 'Telegram' },
+                    { icon: emailIcon, href: 'mailto:Hirazed97@gmail.com', label: 'Email' },
                   ].map((social) => (
                     <a
                       key={social.label}
                       href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       aria-label={social.label}
-                      className="p-3 rounded-full bg-secondary/50 text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
+                      className="p-3 rounded-full bg-secondary/50 hover:bg-primary/20 transition-colors flex items-center justify-center"
+                      title={social.label}
                     >
-                      {social.icon}
+                      <img
+                        src={social.icon}
+                        alt={social.label}
+                        className="w-5 h-5 object-contain"
+                      />
                     </a>
                   ))}
                 </div>
@@ -195,7 +208,6 @@ const ContactPage = () => {
                         <option value="social-media">Social Media Design</option>
                         <option value="branding">Branding Project</option>
                         <option value="marketing">Marketing Graphics</option>
-                        <option value="ui-design">UI/Web Design</option>
                         <option value="other">Other</option>
                       </select>
                     </div>
@@ -241,13 +253,14 @@ const ContactPage = () => {
         </div>
       </section>
 
-      {/* Map Section (Optional) */}
+      {/* Map Section */}
       <section className="py-12 bg-secondary/30">
         <div className="container mx-auto px-6 lg:px-12">
           <div className="rounded-2xl overflow-hidden border border-border h-64 md:h-96 bg-card flex items-center justify-center">
             <div className="text-center text-muted-foreground">
               <MapPin className="w-12 h-12 mx-auto mb-4 text-primary/50" />
-              <p>Map integration available</p>
+              <p>Addis Ababa, Ethiopia</p>
+              <p className="text-sm mt-2">Available for projects worldwide</p>
             </div>
           </div>
         </div>

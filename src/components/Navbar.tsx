@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import ThemeToggle from './ThemeToggle';
+import logo7 from '@/assets/logos/logo7.png'; // Add this import
 
 const navLinks = [
   { name: 'Home', href: '/#home' },
@@ -84,13 +85,18 @@ const Navbar = () => {
       >
         <div className="container mx-auto px-6 lg:px-12">
           <div className="flex items-center justify-between h-20">
-            {/* Logo */}
+            {/* Logo - UPDATED WITH logo7.png */}
             <Link to="/" className="flex items-center gap-3 group" onClick={() => setActiveSection('home')}>
               <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center overflow-hidden border-2 border-primary/50 transition-all duration-300 group-hover:border-primary group-hover:scale-105">
-                <span className="text-primary-foreground font-bold text-lg">HZ</span>
+                {/* Replace text with logo7 image */}
+                <img
+                  src={logo7}
+                  alt="Hirazed Design Logo"
+                  className="w-full h-full object-contain p-1.5"
+                />
               </div>
               <span className="text-foreground font-semibold text-lg tracking-wide hidden sm:block">
-                HIRUY <span className="text-primary">DESIGN</span>
+                HIRAZED <span className="text-primary">DESIGN</span>
               </span>
             </Link>
 

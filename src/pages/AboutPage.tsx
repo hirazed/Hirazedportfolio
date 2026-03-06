@@ -1,46 +1,59 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, Download, Mail, Phone, MapPin, Linkedin, Instagram, Dribbble, Globe } from 'lucide-react';
+import { ArrowLeft, Download, Mail, Phone, MapPin, Linkedin, Instagram, MessageSquare, Globe, Palette, Camera } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import designerPortrait from '@/assets/designer-portrait.jpg';
 
 const skills = [
   { name: 'Photoshop', level: 95 },
   { name: 'Illustrator', level: 90 },
-  { name: 'Figma', level: 88 },
-  { name: 'After Effects', level: 75 },
-  { name: 'InDesign', level: 82 },
-  { name: 'Lightroom', level: 85 },
+  { name: 'Solidworks', level: 70 }, // Changed from Figma to Solidworks at 70%
+  { name: 'Premiere Pro', level: 50 },
+  { name: 'Cap Cut', level: 50 },
 ];
 
 const tools = [
   { name: 'Adobe Photoshop', icon: '🎨' },
   { name: 'Adobe Illustrator', icon: '✏️' },
-  { name: 'Figma', icon: '🖼️' },
-  { name: 'After Effects', icon: '🎬' },
+  { name: 'Solidworks', icon: '🔩' },
+  { name: 'AutoCAD', icon: '📐' }, // Added AutoCAD
+  { name: 'Adobe Express', icon: '⚡' },
+  { name: 'Affinity', icon: '🎯' },
+  { name: 'Canva', icon: '📊' },
   { name: 'Premiere Pro', icon: '🎥' },
-  { name: 'InDesign', icon: '📄' },
-  { name: 'Lightroom', icon: '📷' },
-  { name: 'Blender', icon: '🔷' },
+  { name: 'CapCut', icon: '✂️' },
 ];
 
 const experiences = [
   {
-    title: 'Senior Graphic Designer',
-    company: 'Creative Agency',
-    period: '2022 - Present',
-    description: 'Leading brand identity projects and mentoring junior designers.',
-  },
-  {
-    title: 'Freelance Designer',
+    title: 'Freelance Graphic Designer', // Added new experience at the top
     company: 'Self-Employed',
-    period: '2019 - 2022',
-    description: 'Worked with 50+ clients across various industries.',
+    period: 'June 2025 – Present',
+    description: 'Providing freelance graphic design services to various clients. Creating custom branding, social media visuals, marketing materials, and digital illustrations. Collaborating with clients to bring their creative visions to life while maintaining brand consistency across all deliverables.',
   },
   {
-    title: 'Junior Designer',
-    company: 'Design Studio',
-    period: '2017 - 2019',
-    description: 'Started career focusing on social media design and print materials.',
+    title: 'Social Media Manager & Graphic Designer',
+    company: 'Google Developer Groups Addis Ababa University',
+    period: 'October 2024 – Present',
+    description: 'Leading social media strategy and visual content creation across platforms. Designing promotional materials for events and initiatives, contributing to a 200% community growth through branded visuals and campaign-driven engagement.',
+  },
+  {
+    title: 'Graphic Designer',
+    company: 'Ambalay Maps',
+    period: 'April 2025 – Present',
+    description: 'Designing high-impact posters and digital visuals to promote Ethiopia\'s Map API. Translating technical concepts into clear, engaging content while maintaining consistent visual identity across platforms.',
+  },
+  {
+    title: 'Social Media Manager & Graphic Designer',
+    company: 'Nexus Tutorial',
+    period: 'July 2025 – Present',
+    description: 'Managing LinkedIn and Telegram presence while creating visual content for tech tutorials. Driving audience growth through strategic campaigns, consistent branding, and accessible educational graphics.',
+  },
+  {
+    title: 'Graphic Designer',
+    company: 'Alta Counseling Ethiopia',
+    period: 'April 2025 – September 2025',
+    description: 'Creating promotional visuals and campaign graphics to strengthen brand presence and support mental health awareness, increasing engagement through thoughtful and emotionally resonant design.',
   },
 ];
 
@@ -86,23 +99,25 @@ const AboutPage = () => {
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mt-2">
                 Hiruy Zerihun
               </h1>
-              <p className="text-primary/80 text-xl mt-2">ህሩይ ዘሪሁን</p>
+      
               <p className="text-muted-foreground mt-6 text-lg leading-relaxed">
-                I'm a passionate graphic designer with over 5 years of experience creating 
-                visual stories that connect and convert. Based in Addis Ababa, Ethiopia, 
-                I specialize in social media design, branding, and digital marketing graphics.
+                I'm a Mechanical Engineering student with a strong passion for graphic design and visual storytelling, focused on creating meaningful designs that communicate clearly and leave a lasting impression. Based in Addis Ababa, Ethiopia, I work across digital design, social media visuals, and engineering tools like SolidWorks and basic AutoCAD.
               </p>
               <p className="text-muted-foreground mt-4 text-lg leading-relaxed">
-                My approach combines Ethiopian cultural aesthetics with modern design principles, 
-                creating unique visuals that stand out in the digital landscape.
+                My approach blends technical thinking with creativity, allowing me to craft modern, purpose-driven visuals that balance aesthetics with impact while turning ideas into engaging visual experiences.
               </p>
 
               {/* CTA Buttons */}
               <div className="flex flex-wrap gap-4 mt-8">
-                <button className="flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-full font-semibold hover:bg-primary/90 transition-colors">
+                <a 
+                  href="https://drive.google.com/file/d/1kLlWkizGYa3480uyv_l7Dgu97C1x3V9z/view?usp=sharing"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-full font-semibold hover:bg-primary/90 transition-colors"
+                >
                   <Download className="w-4 h-4" />
                   Download CV
-                </button>
+                </a>
                 <button 
                   onClick={() => navigate('/contact')}
                   className="flex items-center gap-2 px-6 py-3 border-2 border-primary text-primary rounded-full font-semibold hover:bg-primary hover:text-primary-foreground transition-colors"
@@ -112,22 +127,42 @@ const AboutPage = () => {
                 </button>
               </div>
 
-              {/* Social Links */}
+              {/* Social Links - UPDATED with logo8, logo9, logo10, logo11 from public/logos */}
               <div className="flex gap-4 mt-8">
-                {[
-                  { icon: <Linkedin className="w-5 h-5" />, href: '#' },
-                  { icon: <Instagram className="w-5 h-5" />, href: '#' },
-                  { icon: <Dribbble className="w-5 h-5" />, href: '#' },
-                  { icon: <Globe className="w-5 h-5" />, href: '#' },
-                ].map((social, i) => (
-                  <a
-                    key={i}
-                    href={social.href}
-                    className="p-3 rounded-full bg-secondary/50 text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
-                  >
-                    {social.icon}
-                  </a>
-                ))}
+                <a
+                  href="https://www.behance.net/hiruyzerihun"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 rounded-full bg-secondary/50 text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
+                  title="Behance"
+                >
+                  <img src="/logos/logo8.png" alt="Behance" className="w-5 h-5" />
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/hiruy-zerihun250997/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 rounded-full bg-secondary/50 text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
+                  title="LinkedIn"
+                >
+                  <img src="/logos/logo9.png" alt="LinkedIn" className="w-5 h-5" />
+                </a>
+                <a
+                  href="https://t.me/Hirazed"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 rounded-full bg-secondary/50 text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
+                  title="Telegram"
+                >
+                  <img src="/logos/logo10.png" alt="Telegram" className="w-5 h-5" />
+                </a>
+                <a
+                  href="mailto:Hirazed97@gmail.com"
+                  className="p-3 rounded-full bg-secondary/50 text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
+                  title="Email"
+                >
+                  <img src="/logos/logo11.png" alt="Email" className="w-5 h-5" />
+                </a>
               </div>
             </div>
 
@@ -137,7 +172,7 @@ const AboutPage = () => {
               <div className="relative">
                 <div className="absolute -inset-4 bg-gradient-to-br from-primary/20 to-transparent rounded-3xl blur-2xl" />
                 <img
-                  src="/placeholder.svg"
+                  src={designerPortrait}
                   alt="Hiruy Zerihun"
                   className="relative rounded-2xl w-full aspect-square object-cover border border-border"
                 />
@@ -156,7 +191,7 @@ const AboutPage = () => {
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12">
-            {/* Skill Bars */}
+            {/* Skill Bars - UPDATED with Solidworks at 70% */}
             <div className="space-y-6">
               <h3 className="text-xl font-semibold text-foreground mb-6">Proficiency</h3>
               {skills.map((skill, index) => (
@@ -182,7 +217,7 @@ const AboutPage = () => {
               ))}
             </div>
 
-            {/* Tools Grid */}
+            {/* Tools Grid - UPDATED with Solidworks and AutoCAD */}
             <div>
               <h3 className="text-xl font-semibold text-foreground mb-6">Tools I Use</h3>
               <div className="grid grid-cols-2 gap-4">
@@ -204,7 +239,7 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Experience Section */}
+      {/* Experience Section - UPDATED with Freelance at the top */}
       <section ref={expRef as React.RefObject<HTMLElement>} className="py-20">
         <div className="container mx-auto px-6 lg:px-12">
           <div className="text-center mb-12">
@@ -215,14 +250,16 @@ const AboutPage = () => {
           <div className="max-w-3xl mx-auto">
             {experiences.map((exp, index) => (
               <div
-                key={exp.title}
+                key={`${exp.title}-${index}`}
                 className={`relative pl-8 pb-12 last:pb-0 ${
                   expVisible ? 'animate-fade-in-up opacity-0' : 'opacity-0'
                 }`}
                 style={{ animationFillMode: 'forwards', animationDelay: `${index * 0.15}s` }}
               >
                 {/* Timeline Line */}
-                <div className="absolute left-0 top-2 w-px h-full bg-border last:hidden" />
+                {index < experiences.length - 1 && (
+                  <div className="absolute left-0 top-2 w-px h-full bg-border" />
+                )}
                 {/* Timeline Dot */}
                 <div className="absolute left-0 top-2 w-2 h-2 -translate-x-1/2 rounded-full bg-primary" />
                 
@@ -245,8 +282,8 @@ const AboutPage = () => {
         <div className="container mx-auto px-6 lg:px-12">
           <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
             {[
-              { icon: <Mail className="w-6 h-6" />, label: 'Email', value: 'hiruy@example.com' },
-              { icon: <Phone className="w-6 h-6" />, label: 'Phone', value: '+251 91 234 5678' },
+              { icon: <Mail className="w-6 h-6" />, label: 'Email', value: 'hirazed97@gmail.com' },
+              { icon: <Phone className="w-6 h-6" />, label: 'Phone', value: '+251 912345678' },
               { icon: <MapPin className="w-6 h-6" />, label: 'Location', value: 'Addis Ababa, Ethiopia' },
             ].map((item, index) => (
               <div

@@ -19,7 +19,7 @@ const services = [
     ),
     title: 'Digital Design',
     titleAmharic: 'ዲጂታል ዲዛይን',
-    description: 'Social media graphics, web design, and digital marketing materials.',
+    description: 'Social media graphics, digital marketing materials, and web graphics.',
   },
   {
     icon: (

@@ -1,38 +1,37 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import portfolio1 from '@/assets/portfolio-1.jpg';
-import portfolio2 from '@/assets/portfolio-2.jpg';
-import portfolio3 from '@/assets/portfolio-3.jpg';
 
-const projects = [
+// Featured projects only - Ambalay Maps, Solidworks, Personal Posters
+const portfolioItems = [
   {
-    id: '1',
-    image: portfolio1,
-    title: 'Premium Brand Package',
-    titleAmharic: 'ፕሪሚየም ብራንድ ፓኬጅ',
-    description: 'Complete brand identity for a luxury fashion brand',
-    category: 'Branding',
+    id: 'ambalay-maps',
+    image: '/logos/CC4.png', // CC4 for Ambalay Maps
+    title: 'Ambalay Maps',
+    category: 'Digital Design',
+    description: 'Poster designs and digital visuals for Ethiopia Map API',
+    type: 'company'
   },
   {
-    id: '2',
-    image: portfolio2,
-    title: 'Digital Campaign',
-    titleAmharic: 'ዲጂታል ካምፔይን',
-    description: 'Social media and digital marketing materials',
-    category: 'Digital',
+    id: 'solidworks-projects',
+    image: '/logos/CC6.png', // CC6 for Solidworks Projects
+    title: 'Solidworks Engineering Projects',
+    category: '3D Design',
+    description: 'Technical 3D CAD modeling, mechanical designs, and engineering visualizations',
+    type: 'company'
   },
   {
-    id: '3',
-    image: portfolio3,
-    title: 'Logo Collection',
-    titleAmharic: 'ሎጎ ስብስብ',
-    description: 'Modern logo designs for various clients',
-    category: 'Branding',
-  },
+    id: 'personal-posters',
+    image: '/logos/PP1.png',
+    title: 'Personal Poster Design Collection',
+    category: 'Graphic Design',
+    description: 'Independent poster designs, creative experiments, and typography explorations',
+    type: 'personal'
+  }
 ];
 
-const ProjectsSection = () => {
+const PortfolioSection = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [imagesLoaded, setImagesLoaded] = useState<Record<string, boolean>>({});
   const sectionRef = useRef<HTMLElement>(null);
   const navigate = useNavigate();
 
@@ -53,68 +52,117 @@ const ProjectsSection = () => {
     return () => observer.disconnect();
   }, []);
 
+  // Preload images for faster loading
+  useEffect(() => {
+    portfolioItems.forEach(item => {
+      const img = new Image();
+      img.src = item.image;
+      img.onload = () => {
+        setImagesLoaded(prev => ({ ...prev, [item.id]: true }));
+      };
+    });
+  }, []);
+
   const handleProjectClick = (projectId: string) => {
     navigate(`/project/${projectId}`);
   };
 
   return (
-    <section id="projects" ref={sectionRef} className="py-16 md:py-24 bg-secondary/30">
+    <section id="portfolio" ref={sectionRef} className="py-20 md:py-32 bg-background">
       <div className="container mx-auto px-6 lg:px-12">
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-12">
-          <span className="text-primary font-semibold tracking-wider uppercase text-sm">Projects</span>
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mt-2">
-            Featured Projects
+        <div className="text-center max-w-2xl mx-auto mb-16">
+          <span className="text-primary font-semibold tracking-wider uppercase">Portfolio</span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mt-3">
+            Recent Works
           </h2>
-          <p className="text-muted-foreground mt-3 text-base">
-            Hand-picked projects that showcase creative excellence
+          <p className="text-muted-foreground mt-4 text-lg">
+            Explore my latest design projects and creative works
           </p>
         </div>
 
-        {/* Projects Grid - 3 per row */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project, index) => (
+        {/* Portfolio Grid - 3 columns for featured projects */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          {portfolioItems.map((item, index) => (
             <div
-              key={project.id}
-              onClick={() => handleProjectClick(project.id)}
-              className={`group cursor-pointer rounded-xl overflow-hidden bg-card border border-border hover:border-primary/50 transition-all duration-300 ${
-                isVisible ? 'animate-fade-in-up opacity-0' : 'opacity-0'
+              key={item.id}
+              onClick={() => handleProjectClick(item.id)}
+              className={`portfolio-card group rounded-2xl overflow-hidden aspect-square cursor-pointer ${
+                isVisible ? 'animate-scale-in opacity-0' : 'opacity-0'
               }`}
-              style={{ animationFillMode: 'forwards', animationDelay: `${index * 0.1}s` }}
+              style={{ 
+                animationFillMode: 'forwards', 
+                animationDelay: `${index * 0.1}s`,
+              }}
             >
-              {/* Image */}
-              <div className="relative aspect-[4/3] overflow-hidden">
+              <div className="relative w-full h-full bg-secondary/10">
+                {!imagesLoaded[item.id] && (
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-8 h-8 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
+                  </div>
+                )}
                 <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  src={item.image}
+                  alt={item.title}
+                  className={`w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110 ${
+                    imagesLoaded[item.id] ? 'opacity-100' : 'opacity-0'
+                  }`}
+                  loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <span className="absolute top-3 left-3 px-2 py-1 bg-primary/90 text-primary-foreground text-xs font-medium rounded-full">
-                  {project.category}
-                </span>
               </div>
-
-              {/* Content */}
-              <div className="p-4 space-y-2">
-                <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors">
-                  {project.title}
-                </h3>
-                <p className="text-primary/80 text-sm">{project.titleAmharic}</p>
-                <p className="text-muted-foreground text-sm line-clamp-2">{project.description}</p>
-                <div className="flex items-center gap-1 text-foreground/70 group-hover:text-primary transition-colors pt-1 text-sm">
-                  View Details
+              <div className="portfolio-card-overlay flex flex-col justify-end p-6">
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="text-primary text-sm font-medium">{item.category}</span>
+                  {item.type === 'personal' && (
+                    <span className="bg-primary/20 text-primary text-xs px-2 py-1 rounded-full">
+                      Personal
+                    </span>
+                  )}
+                </div>
+                <h3 className="text-foreground text-xl font-bold mt-1">{item.title}</h3>
+                <p className="text-foreground/80 text-sm mt-2 line-clamp-2">{item.description}</p>
+                <span className="mt-4 inline-flex items-center gap-2 text-foreground/80 group-hover:text-primary transition-colors">
+                  View Project
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
-                </div>
+                </span>
               </div>
             </div>
           ))}
+        </div>
+
+        {/* View All Button - Fixed to navigate to the main portfolio section */}
+        <div className="text-center mt-12">
+          <button
+            onClick={() => {
+              // Navigate to home page and scroll to the main portfolio section
+              navigate('/');
+              // Small delay to ensure navigation completes before scrolling
+              setTimeout(() => {
+                const mainPortfolioSection = document.getElementById('all-projects');
+                if (mainPortfolioSection) {
+                  mainPortfolioSection.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                  // If all-projects doesn't exist, scroll to the regular portfolio section
+                  const portfolioSection = document.getElementById('portfolio');
+                  if (portfolioSection) {
+                    portfolioSection.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }
+              }, 100);
+            }}
+            className="inline-flex items-center gap-2 px-8 py-4 border-2 border-primary text-primary font-semibold rounded-full hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+          >
+            View All Projects
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </button>
         </div>
       </div>
     </section>
   );
 };
 
-export default ProjectsSection;
+export default PortfolioSection;

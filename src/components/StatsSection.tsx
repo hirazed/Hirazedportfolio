@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 
 const stats = [
   { value: 150, suffix: '+', label: 'Projects Completed', labelAmharic: 'የተጠናቀቁ ፕሮጀክቶች' },
-  { value: 50, suffix: '+', label: 'Happy Clients', labelAmharic: 'ደስተኛ ደንበኞች' },
-  { value: 5, suffix: '+', label: 'Years Experience', labelAmharic: 'ዓመታት ልምድ' },
+  { value: 20, suffix: '+', label: 'Happy Clients', labelAmharic: 'ደስተኛ ደንበኞች' },
+  { value: 2, suffix: '+', label: 'Years Experience', labelAmharic: 'ዓመታት ልምድ' },
   { value: 99, suffix: '%', label: 'Client Satisfaction', labelAmharic: 'የደንበኛ እርካታ' },
 ];
 

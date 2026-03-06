@@ -1,12 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import designerPortrait from '@/assets/designer-portrait.jpg';
 
-const stats = [
-  { number: '5+', label: 'Years Experience' },
-  { number: '200+', label: 'Projects Completed' },
-  { number: '100+', label: 'Happy Clients' },
-  { number: '50+', label: 'Awards Won' },
-];
 
 const AboutSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -61,37 +55,23 @@ const AboutSection = () => {
             <div>
               <span className="text-primary font-semibold tracking-wider uppercase">About Me</span>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mt-3">
-                Creative Designer with Passion
+                Visual Designer & Creative Thinker
               </h2>
             </div>
 
             <p className="text-muted-foreground text-lg leading-relaxed">
-              With over 5 years of experience in graphic design, I specialize in creating
-              visually stunning brand identities, digital artwork, and marketing materials
-              that help businesses stand out in their industry.
+              I’m a Mechanical Engineering student and graphic designer based in Addis Ababa, creating meaningful visuals through digital design and visual storytelling—while also working with SolidWorks and basic AutoCAD.
             </p>
 
             <p className="text-muted-foreground text-lg leading-relaxed">
-              My approach combines creativity with strategic thinking, ensuring every design
-              not only looks beautiful but also achieves its intended purpose.
+             I combine technical thinking with creativity to craft modern, purpose-driven designs that turn ideas into impactful visual experiences.
             </p>
 
-            {/* Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-6">
-              {stats.map((stat, index) => (
-                <div
-                  key={stat.label}
-                  className={`text-center ${isVisible ? 'animate-scale-in opacity-0' : 'opacity-0'}`}
-                  style={{ animationFillMode: 'forwards', animationDelay: `${0.4 + index * 0.1}s` }}
-                >
-                  <div className="text-3xl md:text-4xl font-bold text-primary">{stat.number}</div>
-                  <div className="text-sm text-muted-foreground mt-1">{stat.label}</div>
-                </div>
-              ))}
-            </div>
+          
+                        </div>
           </div>
         </div>
-      </div>
+    
     </section>
   );
 };

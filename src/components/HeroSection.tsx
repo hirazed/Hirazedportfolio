@@ -13,14 +13,14 @@ const heroSlides = [
     role: 'Graphic Designer & Social Media Designer',
     subtitle: 'Designing Visual Stories That Convert and Connect.',
   },
-  {
-    id: 2,
-    image: heroSlide2,
-    titleAmharic: 'ብራንድ ማንነት ዲዛይን',
-    titleEnglish: 'Brand Identity Design',
-    role: 'Creating Memorable Brands',
-    subtitle: 'Building brands that stand out in the digital landscape.',
-  },
+   {
+  id: 2,
+  image: heroSlide2,
+  titleAmharic: 'የፖስተር እና ማስታወቂያ ዲዛይን',
+  titleEnglish: 'Poster & Advertisement Design',
+  role: 'Crafting Visual Campaigns',
+  subtitle: 'Creating compelling graphics for print and digital campaigns.',
+},
   {
     id: 3,
     image: heroSlide3,

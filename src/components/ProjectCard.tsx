@@ -1,3 +1,4 @@
+// components/ProjectCard.tsx
 import { useState } from 'react';
 import { Project } from '@/data/projects';
 
@@ -24,10 +25,10 @@ const ProjectCard = ({ project, onClick, index = 0, isVisible = true }: ProjectC
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Image */}
+      {/* Image - Use project.image (thumbnail) */}
       <div className="aspect-[4/3] overflow-hidden bg-secondary/50">
         <img
-          src={project.images[0]}
+          src={project.image}
           alt={project.title}
           className={`w-full h-full object-cover transition-transform duration-700 ease-out ${
             isHovered ? 'scale-110' : 'scale-100'
@@ -48,6 +49,7 @@ const ProjectCard = ({ project, onClick, index = 0, isVisible = true }: ProjectC
           }`}>
             {project.title}
           </h3>
+          <p className="text-sm text-muted-foreground mt-1">{project.client}</p>
           <div className={`flex gap-2 mt-2 transition-all duration-300 delay-100 ${
             isHovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}>
